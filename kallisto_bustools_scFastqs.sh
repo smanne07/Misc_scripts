@@ -28,7 +28,7 @@ echo ${filename}
 
 cd ${base_dir}/${dir}
 
-for filename in *_1.fastq;
+for filename in *_1.fastq.gz;
 do echo $filename
 R1=$filename;
 R2=$(echo $R1 | sed 's/_R1/_R2/g')
@@ -42,8 +42,8 @@ bustools sort -t 4 -o output.correct.sort.bus output.correct.bus
 
 mkdir eqcount
 mkdir genecount
-bustools count -o eqcount/tcc -g /project/wherrylab/wlabtools/Ref_files/kallisto_bustools/transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
-bustools count -o genecount/gene -g /project/wherrylab/wlabtools/Ref_files/kallisto_bustools/transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
+bustools count -o eqcount/tcc -g /project/wherrylab/wlabtools/Ref_files/kallisto_bustools/mus_musculus/transcripts_to_genes.txt -e matrix.ec -t transcripts.txt output.correct.sort.bus
+bustools count -o genecount/gene -g /project/wherrylab/wlabtools/Ref_files/kallisto_bustools/mus_musculus/transcripts_to_genes.txt -e matrix.ec -t transcripts.txt --genecounts output.correct.sort.bus
 
 done
 done
